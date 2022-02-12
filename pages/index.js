@@ -1,3 +1,7 @@
-export default function Home () {
-    return "HI"
+export default function Home() {
+  return (
+    <>
+      "hi"!!
+    </>
+  )
 }
