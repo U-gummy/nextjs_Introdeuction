@@ -1,25 +1,38 @@
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import Seo from "./seo";
 
-
-export default function Home({results}) {
-  const [movies, setMovies] = useState();
-  useEffect(() => {
-    (async () => {
-      setMovies(results);
-      console.log('results: ', results);
-    })();
-  }, []);
+export default function Home({ results }) {
+  const router = useRouter();
+  const handleClick = (id, title) => {
+    router.push({
+      pathname: `/movies/${id}`,
+      query: {
+        title,
+      }
+    }, `/movies/${id}`);
+  }
 
   return (
     <div className="content">
       <Seo title={"Home"} />
       <ul>
-        {/* {!movies && <h4>Loading...</h4>} */}
         {results && results.map((movie) => (
-          <li key={movie.id}>
+          <li onClick={() => handleClick(movie.id, movie.original_title)} key={movie.id}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-            <strong>{movie.original_title}</strong>
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  title: movie.original_title,
+                },
+              }}
+              as={`/movies/${id}`}
+            >
+              <a>
+                <strong>{movie.original_title}</strong>
+              </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -29,7 +42,7 @@ export default function Home({results}) {
         img {display:block;width:100%;}
         strong {display:block;margin-top:10px;}
       `}</style>
-    </div>
+    </div >
   )
 }
 
