@@ -13,6 +13,8 @@ export default function Nav() {
       </Link>
       <style jsx>{`
         .active {color:tomato;}
+        nav {display:flex;justify-content:space-around;width:500px;height:60px;margin:0 auto;box-shadow:0px 0px 20px #ccc;align-items:center;}
+        a {font-size:20px;}
       `}</style>
     </nav>
   );

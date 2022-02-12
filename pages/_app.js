@@ -1,13 +1,10 @@
-import Nav from "../components/Nav";
 import "../styles/globals.css"
+import Layout from "./layout";
+
 export default function App({ Component, pageProps }) {
   return (
-    <>
-      <Nav />
+    <Layout>
       <Component {...pageProps} />
-      <style jsx global>{`
-          a {text-decoration:none;color:#ccc;}
-      `}</style>
-    </>
+    </Layout>
   );
 } 
